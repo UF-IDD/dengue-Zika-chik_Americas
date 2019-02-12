@@ -1,0 +1,41 @@
+﻿location,locGroup,actual,region,latitude,regionLatOrder,regionNum,regionLatOrderOriginal
+San_Andres,San_Andres,San Andrés Archipelago,Caribe,12.5567324,1,2,1
+Guajira,Guajira,La Guajira,Caribe,11.3547743,2,2,2
+Atlantico,Atlantico,Atlántico,Caribe,10.6966159,3,2,3
+Barranquilla,Atlantico,Atlántico,Caribe,10.6966159,NA,2,4
+Magdalena,Magdalena,Magdalena,Caribe,10.4113014,4,2,5
+Santa_Marta,Magdalena,Magdalena,Caribe,10.4113014,NA,2,6
+Cesar,Cesar,Cesar,Caribe,9.3372948,5,2,7
+Sucre,Sucre,Sucre,Caribe,8.813977,6,2,8
+Bolivar,Bolivar,Bolívar,Caribe,8.6704382,7,2,9
+Cartagena,Bolivar,Bolívar,Caribe,8.6704382,NA,2,10
+Cordoba,Cordoba,Córdoba,Caribe,8.049293,8,2,11
+Choco,Choco,Chocó,Pacífica,5.2528033,9,3,12
+Norte_Santander,Norte_Santander,Norte de Santander,Andina,7.9462831,13,4,13
+Antioquia,Antioquia,Antioquia,Andina,7.1986064,14,4,14
+Santander,Santander,Santander,Andina,6.6437076,15,4,15
+Boyaca,Boyaca,Boyacá,Andina,5.454511,16,4,16
+Risaralda,Risaralda,Risaralda,Andina,5.3158475,17,4,17
+Caldas,Caldas,Caldas,Andina,5.29826,18,4,18
+Cundinamarca,Cundinamarca,Cundinamarca,Andina,5.026003,19,4,19
+Bogota,Bogota,Bogotá,Andina,4.7109886,NA,4,20
+Quindio,Quindio,Quindío,Andina,4.4610191,20,4,21
+Tolima,Tolima,Tolima,Andina,4.0925168,21,4,22
+Buenaventura,Valle,Valle del Cauca,Pacífica,3.8008893,NA,3,23
+Valle,Valle,Valle del Cauca,Pacífica,3.8008893,10,3,24
+Cauca,Cauca,Cauca,Pacífica,2.7049813,11,3,25
+Huila,Huila,Huila,Andina,2.5359349,22,4,26
+Narino,Narino,Nariño,Pacífica,1.289151,12,3,27
+Arauca,Arauca,Arauca,Orinoquía,7.076172,23,5,28
+Casanare,Casanare,Casanare,Orinoquía,5.7589269,24,5,29
+Vichada,Vichada,Vichada,Orinoquía,4.4234452,25,5,30
+Meta,Meta,Meta,Orinoquía,3.2719904,26,5,31
+Guainia,Guainia,Guainía,Orinoquía,2.585393,27,5,32
+Guaviare,Guaviare,Guaviare,Orinoquía,2.043924,28,5,33
+Caqueta,Caqueta,Caquetá,Amazónica,0.869892,29,6,34
+Vaupes,Vaupes,Vaupés,Amazónica,0.8553561,30,6,35
+Putumayo,Putumayo,Putumayo,Amazónica,0.4359506,31,6,36
+Amazonas,Amazonas,Amazonas,Amazónica,-1.4429123,32,6,37
+Desconocido,,Desconocido,,,NA,NA,
+Exterior,,Exterior,,,NA,NA,
+Procedencia_Desconocida,,Procedencia Desconocida,,,NA,NA,
