@@ -30,6 +30,12 @@ If you find the time series useful, please cite this repository along with the o
     * Cumulative probable case counts were entered from weekly epidemiological bulletins by the Direction of Epidemiological surveillance on the Brazilian Ministry of Health website.
     * Data for 2015 Epiweek 9 to 2018 Epiweek 42 downloaded from: http://portalms.saude.gov.br/boletins-epidemiologicos
 
+
+**Microcephaly**
+* Centro de operações de emergência de saúde pública em microcefalia, Ministério da Saúde, Brasil
+  * Cumulative cases of microcephaly and other central nervous system disorders in newborns reported in weekly epidemiological reports from the Brazilian Ministry of Health website.
+  * Data for 2016 downloaded from: http://portalms.saude.gov.br/saude-de-a-z/microcefalia/informes-epidemiologicos
+
 **Population size** 
 * Instituto Brasileiro de Geografia e Estatística
     * Yearly state-level population size estimates

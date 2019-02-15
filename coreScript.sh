@@ -37,7 +37,7 @@ mkdir -p 01-TabulatedData
     # dengue, haemorrhagic fever and toxic shock syndrome). Incomplete notification forms that do not
     # specify dengue type are also included in the totals. The month represents the month of initial
     # sypmtoms. November 2006 is a partial result and data for 1991 was indicated as defective).
-    # saved in 01-TabulatedData/Dengue-Brazil-DatasetArchiveTotal/EpiBulletin1986-2006_totals.csv
+    # saved in 01-TabulatedData/Dengue-Brazil-DatasetArchiveTotal/Archive1986-2006_totals.csv
 
  
     # Batch retrieve tabnet severity data (2001-2012)
@@ -112,7 +112,7 @@ mkdir -p 01-TabulatedData
     # reported by Ministério da Saúde Brasil.
     # http://portalms.saude.gov.br/saude-de-a-z/microcefalia/informes-epidemiologicos
     # Data (2016) most recently downloaded October 17, 2017
-    # saved in: 01-TabulatedData/
+    # saved in: 01-TabulatedData/Microcephaly-Brazil-Microcephaly
 
 
 # Population size
@@ -216,8 +216,8 @@ mkdir -p 02-UnifiedCsvData
     # Dengue-Brazil-DatasetArchiveTotal
     # : process and truncate to 2000
     Rscript --vanilla Scripts/02-ProcessTab-DatasetArchiveBrazilTotals.R \
-        01-TabulatedData/Dengue-Brazil-DatasetArchiveTotal/EpiBulletin1986-2006_totals.csv \
-        02-UnifiedCsvData/Dengue-Brazil-DatasetArchiveTotal/EpiBulletin1986-2000_totals.csv \
+        01-TabulatedData/Dengue-Brazil-DatasetArchiveTotal/Archive1986-2006_totals.csv \
+        02-UnifiedCsvData/Dengue-Brazil-DatasetArchiveTotal/Archive1986-2000_totals.csv \
         "01-TabulatedData/Mappings-Brazil-Location.csv"
  
     # Dengue-Brazil-TabnetTotal
