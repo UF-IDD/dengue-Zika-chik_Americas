@@ -1,67 +1,137 @@
 {
-  "description": "Data repository of publicly available dengue, Zika, and chikungunya case data for Brazil and Colombia.", 
-  "license": "other-open", 
-  "title": "UF-IDD/dengue-Zika-chik_Americas v1.0", 
-  "version": "v1.0", 
-  "upload_type": "software", 
-  "publication_date": "2019-02-15", 
-  "creators": [
+  "conceptdoi": "10.5281/zenodo.2566509", 
+  "conceptrecid": "2566509", 
+  "created": "2019-02-15T18:47:48.272736+00:00", 
+  "doi": "10.5281/zenodo.2566510", 
+  "files": [
     {
-      "name": "Borchering, Rebecca K.",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "Huang, Angkana",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "Mier-y-Teran-Romero, Luis",
-      "affiliation": "Department of Epidemiology, Johns Hopkins Bloomberg School of Public Health, Johns Hopkins University, Baltimore, MD, 21205, USA"
-    },
-    {
-      "name": "Rojas, Diana P.",
-      "affiliation": "Department of Biostatistics, College of Public Health and Health Professions, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "Rodriguez-Barraquer, Isabel",
-      "affiliation": "Department of Medicine, University of California, San Francisco, San Francisco, CA, 94143, USA"
-    },
-    {
-      "name": "Katzelnick, Leah C.",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "Martinez, Silvio D.",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "King, Gregory D.",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "Cinkovich, Stephanie C.",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
-    },
-    {
-      "name": "Lessler, Justin",
-      "affiliation": "Department of Epidemiology, Johns Hopkins Bloomberg School of Public Health, Johns Hopkins University, Baltimore, MD, 21205, USA"
-    },
-    {
-      "name": "Cummings, Derek A.T.",
-      "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA"
+      "bucket": "c52145a7-5659-4529-9d46-1798cc6a55c6", 
+      "checksum": "md5:cecfc20465c78a2ea3fa087e0eb50423", 
+      "key": "UF-IDD/dengue-Zika-chik_Americas-v1.0.zip", 
+      "links": {
+        "self": "https://zenodo.org/api/files/c52145a7-5659-4529-9d46-1798cc6a55c6/UF-IDD/dengue-Zika-chik_Americas-v1.0.zip"
+      }, 
+      "size": 680481800, 
+      "type": "zip"
     }
+  ], 
+  "id": 2566510, 
+  "links": {
+    "badge": "https://zenodo.org/badge/doi/10.5281/zenodo.2566510.svg", 
+    "bucket": "https://zenodo.org/api/files/c52145a7-5659-4529-9d46-1798cc6a55c6", 
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281/zenodo.2566509.svg", 
+    "conceptdoi": "https://doi.org/10.5281/zenodo.2566509", 
+    "doi": "https://doi.org/10.5281/zenodo.2566510", 
+    "html": "https://zenodo.org/record/2566510", 
+    "latest": "https://zenodo.org/api/records/2566510", 
+    "latest_html": "https://zenodo.org/record/2566510"
+  }, 
+  "metadata": {
+    "access_right": "open", 
+    "access_right_category": "success", 
+    "creators": [
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Borchering, Rebecca K."
+      }, 
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Huang, Angkana"
+      }, 
+      {
+        "affiliation": "Department of Epidemiology, Johns Hopkins Bloomberg School of Public Health, Johns Hopkins University, Baltimore, MD, 21205, USA", 
+        "name": "Mier-y-Teran-Romero, Luis"
+      }, 
+      {
+        "affiliation": "Department of Biostatistics, College of Public Health and Health Professions, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Rojas, Diana P."
+      }, 
+      {
+        "affiliation": "Department of Medicine, University of California, San Francisco, San Francisco, CA, 94143, USA", 
+        "name": "Rodriguez-Barraquer, Isabel"
+      }, 
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Katzelnick, Leah C."
+      }, 
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Martinez, Silvio D."
+      }, 
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "King, Gregory D."
+      }, 
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Cinkovich, Stephanie C."
+      }, 
+      {
+        "affiliation": "Department of Epidemiology, Johns Hopkins Bloomberg School of Public Health, Johns Hopkins University, Baltimore, MD, 21205, USA", 
+        "name": "Lessler, Justin"
+      }, 
+      {
+        "affiliation": "Department of Biology and Emerging Pathogens Institute, University of Florida, Gainesville, FL, 32610, USA", 
+        "name": "Cummings, Derek A.T."
+      }
     ], 
-  "access_right": "open", 
-  "related_identifiers": [
-    {
-      "scheme": "url", 
-      "identifier": "https://github.com/UF-IDD/dengue-Zika-chik_Americas/tree/v1.0", 
-      "relation": "isSupplementTo"
+    "description": "<p>Data repository of publicly available dengue, Zika, and chikungunya case data for Brazil and Colombia.</p>", 
+    "doi": "10.5281/zenodo.2566510", 
+    "license": {
+      "id": "GPL-3.0-only"
     }, 
-    {
-      "scheme": "doi", 
-      "identifier": "10.5281/zenodo.2566510", 
-      "relation": "isVersionOf"
-    }
-    ]
+    "publication_date": "2019-02-15", 
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/UF-IDD/dengue-Zika-chik_Americas/tree/v1.0", 
+        "relation": "isSupplementTo", 
+        "scheme": "url"
+      }, 
+      {
+        "identifier": "10.5281/zenodo.2566509", 
+        "relation": "isVersionOf", 
+        "scheme": "doi"
+      }
+    ], 
+    "relations": {
+      "version": [
+        {
+          "count": 1, 
+          "index": 0, 
+          "is_last": true, 
+          "last_child": {
+            "pid_type": "recid", 
+            "pid_value": "2566510"
+          }, 
+          "parent": {
+            "pid_type": "recid", 
+            "pid_value": "2566509"
+          }
+        }
+      ]
+    }, 
+    "resource_type": {
+      "title": "Dataset", 
+      "type": "dataset"
+    }, 
+    "title": "UF-IDD/dengue-Zika-chik_Americas v1.0", 
+    "version": "v1.0"
+  }, 
+  "owners": [
+    60731
+  ], 
+  "revision": 5, 
+  "stats": {
+    "downloads": 0.0, 
+    "unique_downloads": 0.0, 
+    "unique_views": 3.0, 
+    "version_downloads": 0.0, 
+    "version_unique_downloads": 0.0, 
+    "version_unique_views": 3.0, 
+    "version_views": 4.0, 
+    "version_volume": 0.0, 
+    "views": 4.0, 
+    "volume": 0.0
+  }, 
+  "updated": "2019-02-15T20:47:23.663580+00:00"
 }
