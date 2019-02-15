@@ -4,6 +4,7 @@ This repository includes raw and processed dengue, Zika, and chikungunya case da
 
 If you find the time series useful, please cite this repository along with the original data sources.
 
+[![DOI](https://zenodo.org/badge/160224999.svg)](https://zenodo.org/badge/latestdoi/160224999)
 
 # Data Sources:
 
