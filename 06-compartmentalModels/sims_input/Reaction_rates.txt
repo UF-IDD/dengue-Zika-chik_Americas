@@ -1,0 +1,817 @@
+
+  Nh = sum(Y(7:specs0))
+
+  ! Zika introduction
+!!$  if (T < T_zika_intro) then
+!!$     beta_zika_mh = 0.0D0
+!!$     beta_zika_hm = beta_zika_mh
+!!$
+!!$  else
+!!$     beta_zika_mh = sqrt(1.5D0*mu_m*(mu + sigma_z)/r_mh)
+!!$     beta_zika_hm = beta_zika_mh
+!!$
+!!$  end if
+  
+  
+  
+  ! Mosq force of infection
+  Mosq_force_infec(1) = beta_hm(1)*(Y(62)+Y(65)+Y(68)+Y(74)+Y(77)+Y(80)+Y(86)+Y(89)+Y(92)+Y(98)+Y(101)+Y(104))/float(Nh)*phi_DD(1)+beta_hm(1)*(phi_ZD*Y(19)+phi_ZD*Y(23)+Y(11)+Y(15))/float(Nh)
+
+  Mosq_force_infec(2) = beta_hm(2)*(Y(59)+Y(66)+Y(69)+Y(71)+Y(78)+Y(81)+Y(83)+Y(90)+Y(93)+Y(95)+Y(102)+Y(105))/float(Nh)*phi_DD(2)+beta_hm(2)*(phi_ZD*Y(20)+phi_ZD*Y(24)+Y(12)+Y(16))/float(Nh)
+
+  Mosq_force_infec(3) = beta_hm(3)*(Y(60)+Y(63)+Y(70)+Y(72)+Y(75)+Y(82)+Y(84)+Y(87)+Y(94)+Y(96)+Y(99)+Y(106))/float(Nh)*phi_DD(3)+beta_hm(3)*(phi_ZD*Y(21)+phi_ZD*Y(25)+Y(13)+Y(17))/float(Nh)
+
+  Mosq_force_infec(4) = beta_hm(4)*(Y(61)+Y(64)+Y(67)+Y(73)+Y(76)+Y(79)+Y(85)+Y(88)+Y(91)+Y(97)+Y(100)+Y(103))/float(Nh)*phi_DD(4)+beta_hm(4)*(phi_ZD*Y(22)+phi_ZD*Y(26)+Y(14)+Y(18))/float(Nh)
+
+  Mosq_zika_force_infec = beta_zika_hm*(Y(31)+Y(32)+Y(33)+Y(34)+Y(71)+Y(72)+Y(73)+Y(74)+Y(75)+Y(76)+Y(77)+Y(78)+Y(79)+Y(80)+Y(81)+Y(82)+Y(108)+Y(47)+Y(48)+Y(49)+Y(50))/float(Nh)*phi_DZ+& 
+       beta_zika_hm*(Y(15)+Y(16)+Y(17)+Y(18)+Y(8))/float(Nh)
+
+
+
+
+
+  ! Birth Rate
+  Birth = mu*float(Nh)
+
+  W(1) = mu_m*(Y(1)+Y(2)+Y(3)+Y(4)+Y(5)+Y(6))
+
+  W(2) = mu_m*Y(1)
+
+  W(3) = mu_m*Y(2)
+
+  W(4) = mu_m*Y(3)
+
+  W(5) = mu_m*Y(4)
+
+  W(6) = mu_m*Y(5)
+
+  W(7) = mu_m*Y(6)
+
+  W(8) = Y(1)*Mosq_force_infec(1)
+
+  W(9) = Y(1)*Mosq_force_infec(2)
+
+  W(10) = Y(1)*Mosq_force_infec(3)
+
+  W(11) = Y(1)*Mosq_force_infec(4)
+
+  W(12) = Y(1)*Mosq_zika_force_infec
+
+  W(13) = Birth
+
+  W(14) = mu*Y(7)
+
+  W(15) = mu*Y(8)
+
+  W(16) = mu*Y(9)
+
+  W(17) = mu*Y(10)
+
+  W(18) = mu*Y(11)
+
+  W(19) = mu*Y(12)
+
+  W(20) = mu*Y(13)
+
+  W(21) = mu*Y(14)
+
+  W(22) = mu*Y(15)
+
+  W(23) = mu*Y(16)
+
+  W(24) = mu*Y(17)
+
+  W(25) = mu*Y(18)
+
+  W(26) = mu*Y(19)
+
+  W(27) = mu*Y(20)
+
+  W(28) = mu*Y(21)
+
+  W(29) = mu*Y(22)
+
+  W(30) = mu*Y(23)
+
+  W(31) = mu*Y(24)
+
+  W(32) = mu*Y(25)
+
+  W(33) = mu*Y(26)
+
+  W(34) = mu*Y(27)
+
+  W(35) = mu*Y(28)
+
+  W(36) = mu*Y(29)
+
+  W(37) = mu*Y(30)
+
+  W(38) = mu*Y(31)
+
+  W(39) = mu*Y(32)
+
+  W(40) = mu*Y(33)
+
+  W(41) = mu*Y(34)
+
+  W(42) = mu*Y(35)
+
+  W(43) = mu*Y(36)
+
+  W(44) = mu*Y(37)
+
+  W(45) = mu*Y(38)
+
+  W(46) = mu*Y(39)
+
+  W(47) = mu*Y(40)
+
+  W(48) = mu*Y(41)
+
+  W(49) = mu*Y(42)
+
+  W(50) = mu*Y(43)
+
+  W(51) = mu*Y(44)
+
+  W(52) = mu*Y(45)
+
+  W(53) = mu*Y(46)
+
+  W(54) = mu*Y(47)
+
+  W(55) = mu*Y(48)
+
+  W(56) = mu*Y(49)
+
+  W(57) = mu*Y(50)
+
+  W(58) = mu*Y(51)
+
+  W(59) = mu*Y(52)
+
+  W(60) = mu*Y(53)
+
+  W(61) = mu*Y(54)
+
+  W(62) = mu*Y(55)
+
+  W(63) = mu*Y(56)
+
+  W(64) = mu*Y(57)
+
+  W(65) = mu*Y(58)
+
+  W(66) = mu*Y(59)
+
+  W(67) = mu*Y(60)
+
+  W(68) = mu*Y(61)
+
+  W(69) = mu*Y(62)
+
+  W(70) = mu*Y(63)
+
+  W(71) = mu*Y(64)
+
+  W(72) = mu*Y(65)
+
+  W(73) = mu*Y(66)
+
+  W(74) = mu*Y(67)
+
+  W(75) = mu*Y(68)
+
+  W(76) = mu*Y(69)
+
+  W(77) = mu*Y(70)
+
+  W(78) = mu*Y(71)
+
+  W(79) = mu*Y(72)
+
+  W(80) = mu*Y(73)
+
+  W(81) = mu*Y(74)
+
+  W(82) = mu*Y(75)
+
+  W(83) = mu*Y(76)
+
+  W(84) = mu*Y(77)
+
+  W(85) = mu*Y(78)
+
+  W(86) = mu*Y(79)
+
+  W(87) = mu*Y(80)
+
+  W(88) = mu*Y(81)
+
+  W(89) = mu*Y(82)
+
+  W(90) = mu*Y(83)
+
+  W(91) = mu*Y(84)
+
+  W(92) = mu*Y(85)
+
+  W(93) = mu*Y(86)
+
+  W(94) = mu*Y(87)
+
+  W(95) = mu*Y(88)
+
+  W(96) = mu*Y(89)
+
+  W(97) = mu*Y(90)
+
+  W(98) = mu*Y(91)
+
+  W(99) = mu*Y(92)
+
+  W(100) = mu*Y(93)
+
+  W(101) = mu*Y(94)
+
+  W(102) = mu*Y(95)
+
+  W(103) = mu*Y(96)
+
+  W(104) = mu*Y(97)
+
+  W(105) = mu*Y(98)
+
+  W(106) = mu*Y(99)
+
+  W(107) = mu*Y(100)
+
+  W(108) = mu*Y(101)
+
+  W(109) = mu*Y(102)
+
+  W(110) = mu*Y(103)
+
+  W(111) = mu*Y(104)
+
+  W(112) = mu*Y(105)
+
+  W(113) = mu*Y(106)
+
+  W(114) = mu*Y(107)
+
+  W(115) = mu*Y(108)
+
+  W(116) = mu*Y(109)
+
+  W(117) = mu*Y(110)
+
+  W(118) = beta_mh(1)/Nh*Y(7)*Y(3)
+
+  W(119) = beta_mh(2)/Nh*Y(7)*Y(4)
+
+  W(120) = beta_mh(3)/Nh*Y(7)*Y(5)
+
+  W(121) = beta_mh(4)/Nh*Y(7)*Y(6)
+
+  W(122) = beta_mh(1)/Nh*Y(8)*Y(3)
+
+  W(123) = beta_mh(2)/Nh*Y(8)*Y(4)
+
+  W(124) = beta_mh(3)/Nh*Y(8)*Y(5)
+
+  W(125) = beta_mh(4)/Nh*Y(8)*Y(6)
+
+  W(126) = rho_ZD*beta_mh(1)/Nh*Y(9)*Y(3)
+
+  W(127) = rho_ZD*beta_mh(2)/Nh*Y(9)*Y(4)
+
+  W(128) = rho_ZD*beta_mh(3)/Nh*Y(9)*Y(5)
+
+  W(129) = rho_ZD*beta_mh(4)/Nh*Y(9)*Y(6)
+
+  W(130) = beta_mh(1)/Nh*Y(10)*Y(3)
+
+  W(131) = beta_mh(2)/Nh*Y(10)*Y(4)
+
+  W(132) = beta_mh(3)/Nh*Y(10)*Y(5)
+
+  W(133) = beta_mh(4)/Nh*Y(10)*Y(6)
+
+  W(134) = sigma*Y(11)
+
+  W(135) = sigma*Y(12)
+
+  W(136) = sigma*Y(13)
+
+  W(137) = sigma*Y(14)
+
+  W(138) = sigma*Y(15)
+
+  W(139) = sigma*Y(16)
+
+  W(140) = sigma*Y(17)
+
+  W(141) = sigma*Y(18)
+
+  W(142) = sigma*Y(19)
+
+  W(143) = sigma*Y(20)
+
+  W(144) = sigma*Y(21)
+
+  W(145) = sigma*Y(22)
+
+  W(146) = sigma*Y(23)
+
+  W(147) = sigma*Y(24)
+
+  W(148) = sigma*Y(25)
+
+  W(149) = sigma*Y(26)
+
+  W(150) = rho_DD*beta_mh(2)/Nh*Y(27)*Y(4)
+
+  W(151) = rho_DD*beta_mh(3)/Nh*Y(27)*Y(5)
+
+  W(152) = rho_DD*beta_mh(4)/Nh*Y(27)*Y(6)
+
+  W(153) = rho_DD*beta_mh(1)/Nh*Y(28)*Y(3)
+
+  W(154) = rho_DD*beta_mh(3)/Nh*Y(28)*Y(5)
+
+  W(155) = rho_DD*beta_mh(4)/Nh*Y(28)*Y(6)
+
+  W(156) = rho_DD*beta_mh(1)/Nh*Y(29)*Y(3)
+
+  W(157) = rho_DD*beta_mh(2)/Nh*Y(29)*Y(4)
+
+  W(158) = rho_DD*beta_mh(4)/Nh*Y(29)*Y(6)
+
+  W(159) = rho_DD*beta_mh(1)/Nh*Y(30)*Y(3)
+
+  W(160) = rho_DD*beta_mh(2)/Nh*Y(30)*Y(4)
+
+  W(161) = rho_DD*beta_mh(3)/Nh*Y(30)*Y(5)
+
+  W(162) = rho_DD*beta_mh(2)/Nh*Y(31)*Y(4)
+
+  W(163) = rho_DD*beta_mh(3)/Nh*Y(31)*Y(5)
+
+  W(164) = rho_DD*beta_mh(4)/Nh*Y(31)*Y(6)
+
+  W(165) = rho_DD*beta_mh(1)/Nh*Y(32)*Y(3)
+
+  W(166) = rho_DD*beta_mh(3)/Nh*Y(32)*Y(5)
+
+  W(167) = rho_DD*beta_mh(4)/Nh*Y(32)*Y(6)
+
+  W(168) = rho_DD*beta_mh(1)/Nh*Y(33)*Y(3)
+
+  W(169) = rho_DD*beta_mh(2)/Nh*Y(33)*Y(4)
+
+  W(170) = rho_DD*beta_mh(4)/Nh*Y(33)*Y(6)
+
+  W(171) = rho_DD*beta_mh(1)/Nh*Y(34)*Y(3)
+
+  W(172) = rho_DD*beta_mh(2)/Nh*Y(34)*Y(4)
+
+  W(173) = rho_DD*beta_mh(3)/Nh*Y(34)*Y(5)
+
+  W(174) = rho_DD*beta_mh(2)/Nh*Y(35)*Y(4)
+
+  W(175) = rho_DD*beta_mh(3)/Nh*Y(35)*Y(5)
+
+  W(176) = rho_DD*beta_mh(4)/Nh*Y(35)*Y(6)
+
+  W(177) = rho_DD*beta_mh(1)/Nh*Y(36)*Y(3)
+
+  W(178) = rho_DD*beta_mh(3)/Nh*Y(36)*Y(5)
+
+  W(179) = rho_DD*beta_mh(4)/Nh*Y(36)*Y(6)
+
+  W(180) = rho_DD*beta_mh(1)/Nh*Y(37)*Y(3)
+
+  W(181) = rho_DD*beta_mh(2)/Nh*Y(37)*Y(4)
+
+  W(182) = rho_DD*beta_mh(4)/Nh*Y(37)*Y(6)
+
+  W(183) = rho_DD*beta_mh(1)/Nh*Y(38)*Y(3)
+
+  W(184) = rho_DD*beta_mh(2)/Nh*Y(38)*Y(4)
+
+  W(185) = rho_DD*beta_mh(3)/Nh*Y(38)*Y(5)
+
+  W(186) = rho_DD*beta_mh(2)/Nh*Y(39)*Y(4)
+
+  W(187) = rho_DD*beta_mh(3)/Nh*Y(39)*Y(5)
+
+  W(188) = rho_DD*beta_mh(4)/Nh*Y(39)*Y(6)
+
+  W(189) = rho_DD*beta_mh(1)/Nh*Y(40)*Y(3)
+
+  W(190) = rho_DD*beta_mh(3)/Nh*Y(40)*Y(5)
+
+  W(191) = rho_DD*beta_mh(4)/Nh*Y(40)*Y(6)
+
+  W(192) = rho_DD*beta_mh(1)/Nh*Y(41)*Y(3)
+
+  W(193) = rho_DD*beta_mh(2)/Nh*Y(41)*Y(4)
+
+  W(194) = rho_DD*beta_mh(4)/Nh*Y(41)*Y(6)
+
+  W(195) = rho_DD*beta_mh(1)/Nh*Y(42)*Y(3)
+
+  W(196) = rho_DD*beta_mh(2)/Nh*Y(42)*Y(4)
+
+  W(197) = rho_DD*beta_mh(3)/Nh*Y(42)*Y(5)
+
+  W(198) = Gamma*Y(27)
+
+  W(199) = Gamma*Y(28)
+
+  W(200) = Gamma*Y(29)
+
+  W(201) = Gamma*Y(30)
+
+  W(202) = Gamma*Y(31)
+
+  W(203) = Gamma*Y(32)
+
+  W(204) = Gamma*Y(33)
+
+  W(205) = Gamma*Y(34)
+
+  W(206) = Gamma*Y(35)
+
+  W(207) = Gamma*Y(36)
+
+  W(208) = Gamma*Y(37)
+
+  W(209) = Gamma*Y(38)
+
+  W(210) = Gamma*Y(39)
+
+  W(211) = Gamma*Y(40)
+
+  W(212) = Gamma*Y(41)
+
+  W(213) = Gamma*Y(42)
+
+  W(214) = beta_mh(2)/Nh*Y(43)*Y(4)
+
+  W(215) = beta_mh(3)/Nh*Y(43)*Y(5)
+
+  W(216) = beta_mh(4)/Nh*Y(43)*Y(6)
+
+  W(217) = beta_mh(1)/Nh*Y(44)*Y(3)
+
+  W(218) = beta_mh(3)/Nh*Y(44)*Y(5)
+
+  W(219) = beta_mh(4)/Nh*Y(44)*Y(6)
+
+  W(220) = beta_mh(1)/Nh*Y(45)*Y(3)
+
+  W(221) = beta_mh(2)/Nh*Y(45)*Y(4)
+
+  W(222) = beta_mh(4)/Nh*Y(45)*Y(6)
+
+  W(223) = beta_mh(1)/Nh*Y(46)*Y(3)
+
+  W(224) = beta_mh(2)/Nh*Y(46)*Y(4)
+
+  W(225) = beta_mh(3)/Nh*Y(46)*Y(5)
+
+  W(226) = beta_mh(2)/Nh*Y(47)*Y(4)
+
+  W(227) = beta_mh(3)/Nh*Y(47)*Y(5)
+
+  W(228) = beta_mh(4)/Nh*Y(47)*Y(6)
+
+  W(229) = beta_mh(1)/Nh*Y(48)*Y(3)
+
+  W(230) = beta_mh(3)/Nh*Y(48)*Y(5)
+
+  W(231) = beta_mh(4)/Nh*Y(48)*Y(6)
+
+  W(232) = beta_mh(1)/Nh*Y(49)*Y(3)
+
+  W(233) = beta_mh(2)/Nh*Y(49)*Y(4)
+
+  W(234) = beta_mh(4)/Nh*Y(49)*Y(6)
+
+  W(235) = beta_mh(1)/Nh*Y(50)*Y(3)
+
+  W(236) = beta_mh(2)/Nh*Y(50)*Y(4)
+
+  W(237) = beta_mh(3)/Nh*Y(50)*Y(5)
+
+  W(238) = rho_ZD*beta_mh(2)/Nh*Y(51)*Y(4)
+
+  W(239) = rho_ZD*beta_mh(3)/Nh*Y(51)*Y(5)
+
+  W(240) = rho_ZD*beta_mh(4)/Nh*Y(51)*Y(6)
+
+  W(241) = rho_ZD*beta_mh(1)/Nh*Y(52)*Y(3)
+
+  W(242) = rho_ZD*beta_mh(3)/Nh*Y(52)*Y(5)
+
+  W(243) = rho_ZD*beta_mh(4)/Nh*Y(52)*Y(6)
+
+  W(244) = rho_ZD*beta_mh(1)/Nh*Y(53)*Y(3)
+
+  W(245) = rho_ZD*beta_mh(2)/Nh*Y(53)*Y(4)
+
+  W(246) = rho_ZD*beta_mh(4)/Nh*Y(53)*Y(6)
+
+  W(247) = rho_ZD*beta_mh(1)/Nh*Y(54)*Y(3)
+
+  W(248) = rho_ZD*beta_mh(2)/Nh*Y(54)*Y(4)
+
+  W(249) = rho_ZD*beta_mh(3)/Nh*Y(54)*Y(5)
+
+  W(250) = beta_mh(2)/Nh*Y(55)*Y(4)
+
+  W(251) = beta_mh(3)/Nh*Y(55)*Y(5)
+
+  W(252) = beta_mh(4)/Nh*Y(55)*Y(6)
+
+  W(253) = beta_mh(1)/Nh*Y(56)*Y(3)
+
+  W(254) = beta_mh(3)/Nh*Y(56)*Y(5)
+
+  W(255) = beta_mh(4)/Nh*Y(56)*Y(6)
+
+  W(256) = beta_mh(1)/Nh*Y(57)*Y(3)
+
+  W(257) = beta_mh(2)/Nh*Y(57)*Y(4)
+
+  W(258) = beta_mh(4)/Nh*Y(57)*Y(6)
+
+  W(259) = beta_mh(1)/Nh*Y(58)*Y(3)
+
+  W(260) = beta_mh(2)/Nh*Y(58)*Y(4)
+
+  W(261) = beta_mh(3)/Nh*Y(58)*Y(5)
+
+  W(262) = sigma*Y(59)
+
+  W(263) = sigma*Y(60)
+
+  W(264) = sigma*Y(61)
+
+  W(265) = sigma*Y(62)
+
+  W(266) = sigma*Y(63)
+
+  W(267) = sigma*Y(64)
+
+  W(268) = sigma*Y(65)
+
+  W(269) = sigma*Y(66)
+
+  W(270) = sigma*Y(67)
+
+  W(271) = sigma*Y(68)
+
+  W(272) = sigma*Y(69)
+
+  W(273) = sigma*Y(70)
+
+  W(274) = sigma*Y(71)
+
+  W(275) = sigma*Y(72)
+
+  W(276) = sigma*Y(73)
+
+  W(277) = sigma*Y(74)
+
+  W(278) = sigma*Y(75)
+
+  W(279) = sigma*Y(76)
+
+  W(280) = sigma*Y(77)
+
+  W(281) = sigma*Y(78)
+
+  W(282) = sigma*Y(79)
+
+  W(283) = sigma*Y(80)
+
+  W(284) = sigma*Y(81)
+
+  W(285) = sigma*Y(82)
+
+  W(286) = sigma*Y(83)
+
+  W(287) = sigma*Y(84)
+
+  W(288) = sigma*Y(85)
+
+  W(289) = sigma*Y(86)
+
+  W(290) = sigma*Y(87)
+
+  W(291) = sigma*Y(88)
+
+  W(292) = sigma*Y(89)
+
+  W(293) = sigma*Y(90)
+
+  W(294) = sigma*Y(91)
+
+  W(295) = sigma*Y(92)
+
+  W(296) = sigma*Y(93)
+
+  W(297) = sigma*Y(94)
+
+  W(298) = sigma*Y(95)
+
+  W(299) = sigma*Y(96)
+
+  W(300) = sigma*Y(97)
+
+  W(301) = sigma*Y(98)
+
+  W(302) = sigma*Y(99)
+
+  W(303) = sigma*Y(100)
+
+  W(304) = sigma*Y(101)
+
+  W(305) = sigma*Y(102)
+
+  W(306) = sigma*Y(103)
+
+  W(307) = sigma*Y(104)
+
+  W(308) = sigma*Y(105)
+
+  W(309) = sigma*Y(106)
+
+  W(310) = beta_zika_mh/Nh*Y(7)*Y(2)
+
+  W(311) = beta_zika_mh/Nh*Y(11)*Y(2)
+
+  W(312) = beta_zika_mh/Nh*Y(12)*Y(2)
+
+  W(313) = beta_zika_mh/Nh*Y(13)*Y(2)
+
+  W(314) = beta_zika_mh/Nh*Y(14)*Y(2)
+
+  W(315) = rho_DZ*beta_zika_mh/Nh*Y(27)*Y(2)
+
+  W(316) = rho_DZ*beta_zika_mh/Nh*Y(28)*Y(2)
+
+  W(317) = rho_DZ*beta_zika_mh/Nh*Y(29)*Y(2)
+
+  W(318) = rho_DZ*beta_zika_mh/Nh*Y(30)*Y(2)
+
+  W(319) = beta_zika_mh/Nh*Y(43)*Y(2)
+
+  W(320) = beta_zika_mh/Nh*Y(44)*Y(2)
+
+  W(321) = beta_zika_mh/Nh*Y(45)*Y(2)
+
+  W(322) = beta_zika_mh/Nh*Y(46)*Y(2)
+
+  W(323) = beta_zika_mh/Nh*Y(59)*Y(2)
+
+  W(324) = beta_zika_mh/Nh*Y(60)*Y(2)
+
+  W(325) = beta_zika_mh/Nh*Y(61)*Y(2)
+
+  W(326) = beta_zika_mh/Nh*Y(62)*Y(2)
+
+  W(327) = beta_zika_mh/Nh*Y(63)*Y(2)
+
+  W(328) = beta_zika_mh/Nh*Y(64)*Y(2)
+
+  W(329) = beta_zika_mh/Nh*Y(65)*Y(2)
+
+  W(330) = beta_zika_mh/Nh*Y(66)*Y(2)
+
+  W(331) = beta_zika_mh/Nh*Y(67)*Y(2)
+
+  W(332) = beta_zika_mh/Nh*Y(68)*Y(2)
+
+  W(333) = beta_zika_mh/Nh*Y(69)*Y(2)
+
+  W(334) = beta_zika_mh/Nh*Y(70)*Y(2)
+
+  W(335) = beta_zika_mh/Nh*Y(107)*Y(2)
+
+  W(336) = sigma_z*Y(8)
+
+  W(337) = sigma_z*Y(15)
+
+  W(338) = sigma_z*Y(16)
+
+  W(339) = sigma_z*Y(17)
+
+  W(340) = sigma_z*Y(18)
+
+  W(341) = sigma_z*Y(31)
+
+  W(342) = sigma_z*Y(32)
+
+  W(343) = sigma_z*Y(33)
+
+  W(344) = sigma_z*Y(34)
+
+  W(345) = sigma_z*Y(47)
+
+  W(346) = sigma_z*Y(48)
+
+  W(347) = sigma_z*Y(49)
+
+  W(348) = sigma_z*Y(50)
+
+  W(349) = sigma_z*Y(71)
+
+  W(350) = sigma_z*Y(72)
+
+  W(351) = sigma_z*Y(73)
+
+  W(352) = sigma_z*Y(74)
+
+  W(353) = sigma_z*Y(75)
+
+  W(354) = sigma_z*Y(76)
+
+  W(355) = sigma_z*Y(77)
+
+  W(356) = sigma_z*Y(78)
+
+  W(357) = sigma_z*Y(79)
+
+  W(358) = sigma_z*Y(80)
+
+  W(359) = sigma_z*Y(81)
+
+  W(360) = sigma_z*Y(82)
+
+  W(361) = sigma_z*Y(108)
+
+  W(362) = gamma_z*Y(9)
+
+  W(363) = gamma_z*Y(19)
+
+  W(364) = gamma_z*Y(20)
+
+  W(365) = gamma_z*Y(21)
+
+  W(366) = gamma_z*Y(22)
+
+  W(367) = gamma_z*Y(35)
+
+  W(368) = gamma_z*Y(36)
+
+  W(369) = gamma_z*Y(37)
+
+  W(370) = gamma_z*Y(38)
+
+  W(371) = gamma_z*Y(51)
+
+  W(372) = gamma_z*Y(52)
+
+  W(373) = gamma_z*Y(53)
+
+  W(374) = gamma_z*Y(54)
+
+  W(375) = gamma_z*Y(83)
+
+  W(376) = gamma_z*Y(84)
+
+  W(377) = gamma_z*Y(85)
+
+  W(378) = gamma_z*Y(86)
+
+  W(379) = gamma_z*Y(87)
+
+  W(380) = gamma_z*Y(88)
+
+  W(381) = gamma_z*Y(89)
+
+  W(382) = gamma_z*Y(90)
+
+  W(383) = gamma_z*Y(91)
+
+  W(384) = gamma_z*Y(92)
+
+  W(385) = gamma_z*Y(93)
+
+  W(386) = gamma_z*Y(94)
+
+  W(387) = gamma_z*Y(109)
+
+
+
+
+
+
+
+
+

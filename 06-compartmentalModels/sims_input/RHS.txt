@@ -1,0 +1,320 @@
+
+  ! Births
+  Birth = mu
+
+
+  ! Mosquito Force of Infection
+  Mosq_force_infec(1) = beta_hm(1)*(Y(62)+Y(65)+Y(68)+Y(74)+Y(77)+Y(80)+Y(86)+Y(89)+Y(92)+Y(98)+Y(101)+Y(104))*phi_DD(1)+beta_hm(1)*(phi_ZD*Y(19)+phi_ZD*Y(23)+Y(11)+Y(15))
+
+  Mosq_force_infec(2) = beta_hm(2)*(Y(59)+Y(66)+Y(69)+Y(71)+Y(78)+Y(81)+Y(83)+Y(90)+Y(93)+Y(95)+Y(102)+Y(105))*phi_DD(2)+beta_hm(2)*(phi_ZD*Y(20)+phi_ZD*Y(24)+Y(12)+Y(16))
+
+  Mosq_force_infec(3) = beta_hm(3)*(Y(60)+Y(63)+Y(70)+Y(72)+Y(75)+Y(82)+Y(84)+Y(87)+Y(94)+Y(96)+Y(99)+Y(106))*phi_DD(3)+beta_hm(3)*(phi_ZD*Y(21)+phi_ZD*Y(25)+Y(13)+Y(17))
+
+  Mosq_force_infec(4) = beta_hm(4)*(Y(61)+Y(64)+Y(67)+Y(73)+Y(76)+Y(79)+Y(85)+Y(88)+Y(91)+Y(97)+Y(100)+Y(103))*phi_DD(4)+beta_hm(4)*(phi_ZD*Y(22)+phi_ZD*Y(26)+Y(14)+Y(18))
+
+  Mosq_zika_force_infec = beta_zika_hm_ode*(Y(31)+Y(32)+Y(33)+Y(34)+Y(71)+Y(72)+Y(73)+Y(74)+Y(75)+Y(76)+Y(77)+Y(78)+Y(79)+Y(80)+Y(81)+Y(82)+Y(108)+Y(47)+Y(48)+Y(49)+Y(50))*phi_DZ+beta_zika_hm_ode*& 
+       (Y(15)+Y(16)+Y(17)+Y(18)+Y(8))
+
+
+
+
+
+
+  ! Eqs
+  dYdt(1) = mu_m*(Y(1)+Y(2)+Y(3)+Y(4)+Y(5)+Y(6))-Y(1)*Mosq_force_infec(1)-Y(1)*Mosq_force_infec(2)-Y(1)*Mosq_force_infec(3)-Y(1)*Mosq_force_infec(4)-Y(1)*Mosq_zika_force_infec-& 
+       mu_m*Y(1)
+
+  dYdt(2) = -mu_m*Y(2)+Y(1)*Mosq_zika_force_infec
+
+  dYdt(3) = -mu_m*Y(3)+Y(1)*Mosq_force_infec(1)
+
+  dYdt(4) = -mu_m*Y(4)+Y(1)*Mosq_force_infec(2)
+
+  dYdt(5) = -mu_m*Y(5)+Y(1)*Mosq_force_infec(3)
+
+  dYdt(6) = -mu_m*Y(6)+Y(1)*Mosq_force_infec(4)
+
+  dYdt(7) = -mu*Y(7)+Birth-r_mh*beta_mh(1)*Y(7)*Y(3)-r_mh*beta_mh(2)*Y(7)*Y(4)-r_mh*beta_mh(3)*Y(7)*Y(5)-r_mh*beta_mh(4)*Y(7)*Y(6)-r_mh*beta_zika_mh_ode*Y(7)*Y(2)
+
+  dYdt(8) = -mu*Y(8)-r_mh*beta_mh(1)*Y(8)*Y(3)-r_mh*beta_mh(2)*Y(8)*Y(4)-r_mh*beta_mh(3)*Y(8)*Y(5)-r_mh*beta_mh(4)*Y(8)*Y(6)+r_mh*beta_zika_mh_ode*Y(7)*Y(2)-sigma_z*Y(8)
+
+  dYdt(9) = -mu*Y(9)-rho_ZD*r_mh*beta_mh(1)*Y(9)*Y(3)-rho_ZD*r_mh*beta_mh(2)*Y(9)*Y(4)-rho_ZD*r_mh*beta_mh(3)*Y(9)*Y(5)-rho_ZD*r_mh*beta_mh(4)*Y(9)*Y(6)+sigma_z*Y(8)-& 
+       gamma_z*Y(9)
+
+  dYdt(10) = -mu*Y(10)-r_mh*beta_mh(1)*Y(10)*Y(3)-r_mh*beta_mh(2)*Y(10)*Y(4)-r_mh*beta_mh(3)*Y(10)*Y(5)-r_mh*beta_mh(4)*Y(10)*Y(6)+gamma_z*Y(9)
+
+  dYdt(11) = -mu*Y(11)+r_mh*beta_mh(1)*Y(7)*Y(3)-sigma*Y(11)-r_mh*beta_zika_mh_ode*Y(11)*Y(2)
+
+  dYdt(12) = -mu*Y(12)+r_mh*beta_mh(2)*Y(7)*Y(4)-sigma*Y(12)-r_mh*beta_zika_mh_ode*Y(12)*Y(2)
+
+  dYdt(13) = -mu*Y(13)+r_mh*beta_mh(3)*Y(7)*Y(5)-sigma*Y(13)-r_mh*beta_zika_mh_ode*Y(13)*Y(2)
+
+  dYdt(14) = -mu*Y(14)+r_mh*beta_mh(4)*Y(7)*Y(6)-sigma*Y(14)-r_mh*beta_zika_mh_ode*Y(14)*Y(2)
+
+  dYdt(15) = -mu*Y(15)+r_mh*beta_mh(1)*Y(8)*Y(3)-sigma*Y(15)+r_mh*beta_zika_mh_ode*Y(11)*Y(2)-sigma_z*Y(15)
+
+  dYdt(16) = -mu*Y(16)+r_mh*beta_mh(2)*Y(8)*Y(4)-sigma*Y(16)+r_mh*beta_zika_mh_ode*Y(12)*Y(2)-sigma_z*Y(16)
+
+  dYdt(17) = -mu*Y(17)+r_mh*beta_mh(3)*Y(8)*Y(5)-sigma*Y(17)+r_mh*beta_zika_mh_ode*Y(13)*Y(2)-sigma_z*Y(17)
+
+  dYdt(18) = -mu*Y(18)+r_mh*beta_mh(4)*Y(8)*Y(6)-sigma*Y(18)+r_mh*beta_zika_mh_ode*Y(14)*Y(2)-sigma_z*Y(18)
+
+  dYdt(19) = -mu*Y(19)+rho_ZD*r_mh*beta_mh(1)*Y(9)*Y(3)-sigma*Y(19)+sigma_z*Y(15)-gamma_z*Y(19)
+
+  dYdt(20) = -mu*Y(20)+rho_ZD*r_mh*beta_mh(2)*Y(9)*Y(4)-sigma*Y(20)+sigma_z*Y(16)-gamma_z*Y(20)
+
+  dYdt(21) = -mu*Y(21)+rho_ZD*r_mh*beta_mh(3)*Y(9)*Y(5)-sigma*Y(21)+sigma_z*Y(17)-gamma_z*Y(21)
+
+  dYdt(22) = -mu*Y(22)+rho_ZD*r_mh*beta_mh(4)*Y(9)*Y(6)-sigma*Y(22)+sigma_z*Y(18)-gamma_z*Y(22)
+
+  dYdt(23) = -mu*Y(23)+r_mh*beta_mh(1)*Y(10)*Y(3)-sigma*Y(23)+gamma_z*Y(19)
+
+  dYdt(24) = -mu*Y(24)+r_mh*beta_mh(2)*Y(10)*Y(4)-sigma*Y(24)+gamma_z*Y(20)
+
+  dYdt(25) = -mu*Y(25)+r_mh*beta_mh(3)*Y(10)*Y(5)-sigma*Y(25)+gamma_z*Y(21)
+
+  dYdt(26) = -mu*Y(26)+r_mh*beta_mh(4)*Y(10)*Y(6)-sigma*Y(26)+gamma_z*Y(22)
+
+  dYdt(27) = -mu*Y(27)+sigma*Y(11)-rho_DD*r_mh*beta_mh(2)*Y(27)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(27)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(27)*Y(6)-Gamma*Y(27)-rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(27)*Y(2)
+
+  dYdt(28) = -mu*Y(28)+sigma*Y(12)-rho_DD*r_mh*beta_mh(1)*Y(28)*Y(3)-rho_DD*r_mh*beta_mh(3)*Y(28)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(28)*Y(6)-Gamma*Y(28)-rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(28)*Y(2)
+
+  dYdt(29) = -mu*Y(29)+sigma*Y(13)-rho_DD*r_mh*beta_mh(1)*Y(29)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(29)*Y(4)-rho_DD*r_mh*beta_mh(4)*Y(29)*Y(6)-Gamma*Y(29)-rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(29)*Y(2)
+
+  dYdt(30) = -mu*Y(30)+sigma*Y(14)-rho_DD*r_mh*beta_mh(1)*Y(30)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(30)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(30)*Y(5)-Gamma*Y(30)-rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(30)*Y(2)
+
+  dYdt(31) = -mu*Y(31)+sigma*Y(15)-rho_DD*r_mh*beta_mh(2)*Y(31)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(31)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(31)*Y(6)-Gamma*Y(31)+rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(27)*Y(2)-sigma_z*Y(31)
+
+  dYdt(32) = -mu*Y(32)+sigma*Y(16)-rho_DD*r_mh*beta_mh(1)*Y(32)*Y(3)-rho_DD*r_mh*beta_mh(3)*Y(32)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(32)*Y(6)-Gamma*Y(32)+rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(28)*Y(2)-sigma_z*Y(32)
+
+  dYdt(33) = -mu*Y(33)+sigma*Y(17)-rho_DD*r_mh*beta_mh(1)*Y(33)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(33)*Y(4)-rho_DD*r_mh*beta_mh(4)*Y(33)*Y(6)-Gamma*Y(33)+rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(29)*Y(2)-sigma_z*Y(33)
+
+  dYdt(34) = -mu*Y(34)+sigma*Y(18)-rho_DD*r_mh*beta_mh(1)*Y(34)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(34)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(34)*Y(5)-Gamma*Y(34)+rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(30)*Y(2)-sigma_z*Y(34)
+
+  dYdt(35) = -mu*Y(35)+sigma*Y(19)-rho_DD*r_mh*beta_mh(2)*Y(35)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(35)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(35)*Y(6)-Gamma*Y(35)+sigma_z*Y(31)-& 
+       gamma_z*Y(35)
+
+  dYdt(36) = -mu*Y(36)+sigma*Y(20)-rho_DD*r_mh*beta_mh(1)*Y(36)*Y(3)-rho_DD*r_mh*beta_mh(3)*Y(36)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(36)*Y(6)-Gamma*Y(36)+sigma_z*Y(32)-& 
+       gamma_z*Y(36)
+
+  dYdt(37) = -mu*Y(37)+sigma*Y(21)-rho_DD*r_mh*beta_mh(1)*Y(37)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(37)*Y(4)-rho_DD*r_mh*beta_mh(4)*Y(37)*Y(6)-Gamma*Y(37)+sigma_z*Y(33)-& 
+       gamma_z*Y(37)
+
+  dYdt(38) = -mu*Y(38)+sigma*Y(22)-rho_DD*r_mh*beta_mh(1)*Y(38)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(38)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(38)*Y(5)-Gamma*Y(38)+sigma_z*Y(34)-& 
+       gamma_z*Y(38)
+
+  dYdt(39) = -mu*Y(39)+sigma*Y(23)-rho_DD*r_mh*beta_mh(2)*Y(39)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(39)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(39)*Y(6)-Gamma*Y(39)+gamma_z*Y(35)
+
+  dYdt(40) = -mu*Y(40)+sigma*Y(24)-rho_DD*r_mh*beta_mh(1)*Y(40)*Y(3)-rho_DD*r_mh*beta_mh(3)*Y(40)*Y(5)-rho_DD*r_mh*beta_mh(4)*Y(40)*Y(6)-Gamma*Y(40)+gamma_z*Y(36)
+
+  dYdt(41) = -mu*Y(41)+sigma*Y(25)-rho_DD*r_mh*beta_mh(1)*Y(41)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(41)*Y(4)-rho_DD*r_mh*beta_mh(4)*Y(41)*Y(6)-Gamma*Y(41)+gamma_z*Y(37)
+
+  dYdt(42) = -mu*Y(42)+sigma*Y(26)-rho_DD*r_mh*beta_mh(1)*Y(42)*Y(3)-rho_DD*r_mh*beta_mh(2)*Y(42)*Y(4)-rho_DD*r_mh*beta_mh(3)*Y(42)*Y(5)-Gamma*Y(42)+gamma_z*Y(38)
+
+  dYdt(43) = Gamma*Y(27)-mu*Y(43)-r_mh*beta_mh(2)*Y(43)*Y(4)-r_mh*beta_mh(3)*Y(43)*Y(5)-r_mh*beta_mh(4)*Y(43)*Y(6)-r_mh*beta_zika_mh_ode*Y(43)*Y(2)
+
+  dYdt(44) = Gamma*Y(28)-mu*Y(44)-r_mh*beta_mh(1)*Y(44)*Y(3)-r_mh*beta_mh(3)*Y(44)*Y(5)-r_mh*beta_mh(4)*Y(44)*Y(6)-r_mh*beta_zika_mh_ode*Y(44)*Y(2)
+
+  dYdt(45) = Gamma*Y(29)-mu*Y(45)-r_mh*beta_mh(1)*Y(45)*Y(3)-r_mh*beta_mh(2)*Y(45)*Y(4)-r_mh*beta_mh(4)*Y(45)*Y(6)-r_mh*beta_zika_mh_ode*Y(45)*Y(2)
+
+  dYdt(46) = Gamma*Y(30)-mu*Y(46)-r_mh*beta_mh(1)*Y(46)*Y(3)-r_mh*beta_mh(2)*Y(46)*Y(4)-r_mh*beta_mh(3)*Y(46)*Y(5)-r_mh*beta_zika_mh_ode*Y(46)*Y(2)
+
+  dYdt(47) = Gamma*Y(31)-mu*Y(47)-r_mh*beta_mh(2)*Y(47)*Y(4)-r_mh*beta_mh(3)*Y(47)*Y(5)-r_mh*beta_mh(4)*Y(47)*Y(6)+r_mh*beta_zika_mh_ode*Y(43)*Y(2)-sigma_z*Y(47)
+
+  dYdt(48) = Gamma*Y(32)-mu*Y(48)-r_mh*beta_mh(1)*Y(48)*Y(3)-r_mh*beta_mh(3)*Y(48)*Y(5)-r_mh*beta_mh(4)*Y(48)*Y(6)+r_mh*beta_zika_mh_ode*Y(44)*Y(2)-sigma_z*Y(48)
+
+  dYdt(49) = Gamma*Y(33)-mu*Y(49)-r_mh*beta_mh(1)*Y(49)*Y(3)-r_mh*beta_mh(2)*Y(49)*Y(4)-r_mh*beta_mh(4)*Y(49)*Y(6)+r_mh*beta_zika_mh_ode*Y(45)*Y(2)-sigma_z*Y(49)
+
+  dYdt(50) = Gamma*Y(34)-mu*Y(50)-r_mh*beta_mh(1)*Y(50)*Y(3)-r_mh*beta_mh(2)*Y(50)*Y(4)-r_mh*beta_mh(3)*Y(50)*Y(5)+r_mh*beta_zika_mh_ode*Y(46)*Y(2)-sigma_z*Y(50)
+
+  dYdt(51) = Gamma*Y(35)-mu*Y(51)-rho_ZD*r_mh*beta_mh(2)*Y(51)*Y(4)-rho_ZD*r_mh*beta_mh(3)*Y(51)*Y(5)-rho_ZD*r_mh*beta_mh(4)*Y(51)*Y(6)+sigma_z*Y(47)-gamma_z*Y(51)
+
+  dYdt(52) = Gamma*Y(36)-mu*Y(52)-rho_ZD*r_mh*beta_mh(1)*Y(52)*Y(3)-rho_ZD*r_mh*beta_mh(3)*Y(52)*Y(5)-rho_ZD*r_mh*beta_mh(4)*Y(52)*Y(6)+sigma_z*Y(48)-gamma_z*Y(52)
+
+  dYdt(53) = Gamma*Y(37)-mu*Y(53)-rho_ZD*r_mh*beta_mh(1)*Y(53)*Y(3)-rho_ZD*r_mh*beta_mh(2)*Y(53)*Y(4)-rho_ZD*r_mh*beta_mh(4)*Y(53)*Y(6)+sigma_z*Y(49)-gamma_z*Y(53)
+
+  dYdt(54) = Gamma*Y(38)-mu*Y(54)-rho_ZD*r_mh*beta_mh(1)*Y(54)*Y(3)-rho_ZD*r_mh*beta_mh(2)*Y(54)*Y(4)-rho_ZD*r_mh*beta_mh(3)*Y(54)*Y(5)+sigma_z*Y(50)-gamma_z*Y(54)
+
+  dYdt(55) = Gamma*Y(39)-mu*Y(55)-r_mh*beta_mh(2)*Y(55)*Y(4)-r_mh*beta_mh(3)*Y(55)*Y(5)-r_mh*beta_mh(4)*Y(55)*Y(6)+gamma_z*Y(51)
+
+  dYdt(56) = Gamma*Y(40)-mu*Y(56)-r_mh*beta_mh(1)*Y(56)*Y(3)-r_mh*beta_mh(3)*Y(56)*Y(5)-r_mh*beta_mh(4)*Y(56)*Y(6)+gamma_z*Y(52)
+
+  dYdt(57) = Gamma*Y(41)-mu*Y(57)-r_mh*beta_mh(1)*Y(57)*Y(3)-r_mh*beta_mh(2)*Y(57)*Y(4)-r_mh*beta_mh(4)*Y(57)*Y(6)+gamma_z*Y(53)
+
+  dYdt(58) = Gamma*Y(42)-mu*Y(58)-r_mh*beta_mh(1)*Y(58)*Y(3)-r_mh*beta_mh(2)*Y(58)*Y(4)-r_mh*beta_mh(3)*Y(58)*Y(5)+gamma_z*Y(54)
+
+  dYdt(59) = -mu*Y(59)+rho_DD*r_mh*beta_mh(2)*Y(27)*Y(4)+r_mh*beta_mh(2)*Y(43)*Y(4)-sigma*Y(59)-r_mh*beta_zika_mh_ode*Y(59)*Y(2)
+
+  dYdt(60) = -mu*Y(60)+rho_DD*r_mh*beta_mh(3)*Y(27)*Y(5)+r_mh*beta_mh(3)*Y(43)*Y(5)-sigma*Y(60)-r_mh*beta_zika_mh_ode*Y(60)*Y(2)
+
+  dYdt(61) = -mu*Y(61)+rho_DD*r_mh*beta_mh(4)*Y(27)*Y(6)+r_mh*beta_mh(4)*Y(43)*Y(6)-sigma*Y(61)-r_mh*beta_zika_mh_ode*Y(61)*Y(2)
+
+  dYdt(62) = -mu*Y(62)+rho_DD*r_mh*beta_mh(1)*Y(28)*Y(3)+r_mh*beta_mh(1)*Y(44)*Y(3)-sigma*Y(62)-r_mh*beta_zika_mh_ode*Y(62)*Y(2)
+
+  dYdt(63) = -mu*Y(63)+rho_DD*r_mh*beta_mh(3)*Y(28)*Y(5)+r_mh*beta_mh(3)*Y(44)*Y(5)-sigma*Y(63)-r_mh*beta_zika_mh_ode*Y(63)*Y(2)
+
+  dYdt(64) = -mu*Y(64)+rho_DD*r_mh*beta_mh(4)*Y(28)*Y(6)+r_mh*beta_mh(4)*Y(44)*Y(6)-sigma*Y(64)-r_mh*beta_zika_mh_ode*Y(64)*Y(2)
+
+  dYdt(65) = -mu*Y(65)+rho_DD*r_mh*beta_mh(1)*Y(29)*Y(3)+r_mh*beta_mh(1)*Y(45)*Y(3)-sigma*Y(65)-r_mh*beta_zika_mh_ode*Y(65)*Y(2)
+
+  dYdt(66) = -mu*Y(66)+rho_DD*r_mh*beta_mh(2)*Y(29)*Y(4)+r_mh*beta_mh(2)*Y(45)*Y(4)-sigma*Y(66)-r_mh*beta_zika_mh_ode*Y(66)*Y(2)
+
+  dYdt(67) = -mu*Y(67)+rho_DD*r_mh*beta_mh(4)*Y(29)*Y(6)+r_mh*beta_mh(4)*Y(45)*Y(6)-sigma*Y(67)-r_mh*beta_zika_mh_ode*Y(67)*Y(2)
+
+  dYdt(68) = -mu*Y(68)+rho_DD*r_mh*beta_mh(1)*Y(30)*Y(3)+r_mh*beta_mh(1)*Y(46)*Y(3)-sigma*Y(68)-r_mh*beta_zika_mh_ode*Y(68)*Y(2)
+
+  dYdt(69) = -mu*Y(69)+rho_DD*r_mh*beta_mh(2)*Y(30)*Y(4)+r_mh*beta_mh(2)*Y(46)*Y(4)-sigma*Y(69)-r_mh*beta_zika_mh_ode*Y(69)*Y(2)
+
+  dYdt(70) = -mu*Y(70)+rho_DD*r_mh*beta_mh(3)*Y(30)*Y(5)+r_mh*beta_mh(3)*Y(46)*Y(5)-sigma*Y(70)-r_mh*beta_zika_mh_ode*Y(70)*Y(2)
+
+  dYdt(71) = -mu*Y(71)+rho_DD*r_mh*beta_mh(2)*Y(31)*Y(4)+r_mh*beta_mh(2)*Y(47)*Y(4)-sigma*Y(71)+r_mh*beta_zika_mh_ode*Y(59)*Y(2)-sigma_z*Y(71)
+
+  dYdt(72) = -mu*Y(72)+rho_DD*r_mh*beta_mh(3)*Y(31)*Y(5)+r_mh*beta_mh(3)*Y(47)*Y(5)-sigma*Y(72)+r_mh*beta_zika_mh_ode*Y(60)*Y(2)-sigma_z*Y(72)
+
+  dYdt(73) = -mu*Y(73)+rho_DD*r_mh*beta_mh(4)*Y(31)*Y(6)+r_mh*beta_mh(4)*Y(47)*Y(6)-sigma*Y(73)+r_mh*beta_zika_mh_ode*Y(61)*Y(2)-sigma_z*Y(73)
+
+  dYdt(74) = -mu*Y(74)+rho_DD*r_mh*beta_mh(1)*Y(32)*Y(3)+r_mh*beta_mh(1)*Y(48)*Y(3)-sigma*Y(74)+r_mh*beta_zika_mh_ode*Y(62)*Y(2)-sigma_z*Y(74)
+
+  dYdt(75) = -mu*Y(75)+rho_DD*r_mh*beta_mh(3)*Y(32)*Y(5)+r_mh*beta_mh(3)*Y(48)*Y(5)-sigma*Y(75)+r_mh*beta_zika_mh_ode*Y(63)*Y(2)-sigma_z*Y(75)
+
+  dYdt(76) = -mu*Y(76)+rho_DD*r_mh*beta_mh(4)*Y(32)*Y(6)+r_mh*beta_mh(4)*Y(48)*Y(6)-sigma*Y(76)+r_mh*beta_zika_mh_ode*Y(64)*Y(2)-sigma_z*Y(76)
+
+  dYdt(77) = -mu*Y(77)+rho_DD*r_mh*beta_mh(1)*Y(33)*Y(3)+r_mh*beta_mh(1)*Y(49)*Y(3)-sigma*Y(77)+r_mh*beta_zika_mh_ode*Y(65)*Y(2)-sigma_z*Y(77)
+
+  dYdt(78) = -mu*Y(78)+rho_DD*r_mh*beta_mh(2)*Y(33)*Y(4)+r_mh*beta_mh(2)*Y(49)*Y(4)-sigma*Y(78)+r_mh*beta_zika_mh_ode*Y(66)*Y(2)-sigma_z*Y(78)
+
+  dYdt(79) = -mu*Y(79)+rho_DD*r_mh*beta_mh(4)*Y(33)*Y(6)+r_mh*beta_mh(4)*Y(49)*Y(6)-sigma*Y(79)+r_mh*beta_zika_mh_ode*Y(67)*Y(2)-sigma_z*Y(79)
+
+  dYdt(80) = -mu*Y(80)+rho_DD*r_mh*beta_mh(1)*Y(34)*Y(3)+r_mh*beta_mh(1)*Y(50)*Y(3)-sigma*Y(80)+r_mh*beta_zika_mh_ode*Y(68)*Y(2)-sigma_z*Y(80)
+
+  dYdt(81) = -mu*Y(81)+rho_DD*r_mh*beta_mh(2)*Y(34)*Y(4)+r_mh*beta_mh(2)*Y(50)*Y(4)-sigma*Y(81)+r_mh*beta_zika_mh_ode*Y(69)*Y(2)-sigma_z*Y(81)
+
+  dYdt(82) = -mu*Y(82)+rho_DD*r_mh*beta_mh(3)*Y(34)*Y(5)+r_mh*beta_mh(3)*Y(50)*Y(5)-sigma*Y(82)+r_mh*beta_zika_mh_ode*Y(70)*Y(2)-sigma_z*Y(82)
+
+  dYdt(83) = -mu*Y(83)+rho_DD*r_mh*beta_mh(2)*Y(35)*Y(4)+rho_ZD*r_mh*beta_mh(2)*Y(51)*Y(4)-sigma*Y(83)+sigma_z*Y(71)-gamma_z*Y(83)
+
+  dYdt(84) = -mu*Y(84)+rho_DD*r_mh*beta_mh(3)*Y(35)*Y(5)+rho_ZD*r_mh*beta_mh(3)*Y(51)*Y(5)-sigma*Y(84)+sigma_z*Y(72)-gamma_z*Y(84)
+
+  dYdt(85) = -mu*Y(85)+rho_DD*r_mh*beta_mh(4)*Y(35)*Y(6)+rho_ZD*r_mh*beta_mh(4)*Y(51)*Y(6)-sigma*Y(85)+sigma_z*Y(73)-gamma_z*Y(85)
+
+  dYdt(86) = -mu*Y(86)+rho_DD*r_mh*beta_mh(1)*Y(36)*Y(3)+rho_ZD*r_mh*beta_mh(1)*Y(52)*Y(3)-sigma*Y(86)+sigma_z*Y(74)-gamma_z*Y(86)
+
+  dYdt(87) = -mu*Y(87)+rho_DD*r_mh*beta_mh(3)*Y(36)*Y(5)+rho_ZD*r_mh*beta_mh(3)*Y(52)*Y(5)-sigma*Y(87)+sigma_z*Y(75)-gamma_z*Y(87)
+
+  dYdt(88) = -mu*Y(88)+rho_DD*r_mh*beta_mh(4)*Y(36)*Y(6)+rho_ZD*r_mh*beta_mh(4)*Y(52)*Y(6)-sigma*Y(88)+sigma_z*Y(76)-gamma_z*Y(88)
+
+  dYdt(89) = -mu*Y(89)+rho_DD*r_mh*beta_mh(1)*Y(37)*Y(3)+rho_ZD*r_mh*beta_mh(1)*Y(53)*Y(3)-sigma*Y(89)+sigma_z*Y(77)-gamma_z*Y(89)
+
+  dYdt(90) = -mu*Y(90)+rho_DD*r_mh*beta_mh(2)*Y(37)*Y(4)+rho_ZD*r_mh*beta_mh(2)*Y(53)*Y(4)-sigma*Y(90)+sigma_z*Y(78)-gamma_z*Y(90)
+
+  dYdt(91) = -mu*Y(91)+rho_DD*r_mh*beta_mh(4)*Y(37)*Y(6)+rho_ZD*r_mh*beta_mh(4)*Y(53)*Y(6)-sigma*Y(91)+sigma_z*Y(79)-gamma_z*Y(91)
+
+  dYdt(92) = -mu*Y(92)+rho_DD*r_mh*beta_mh(1)*Y(38)*Y(3)+rho_ZD*r_mh*beta_mh(1)*Y(54)*Y(3)-sigma*Y(92)+sigma_z*Y(80)-gamma_z*Y(92)
+
+  dYdt(93) = -mu*Y(93)+rho_DD*r_mh*beta_mh(2)*Y(38)*Y(4)+rho_ZD*r_mh*beta_mh(2)*Y(54)*Y(4)-sigma*Y(93)+sigma_z*Y(81)-gamma_z*Y(93)
+
+  dYdt(94) = -mu*Y(94)+rho_DD*r_mh*beta_mh(3)*Y(38)*Y(5)+rho_ZD*r_mh*beta_mh(3)*Y(54)*Y(5)-sigma*Y(94)+sigma_z*Y(82)-gamma_z*Y(94)
+
+  dYdt(95) = -mu*Y(95)+rho_DD*r_mh*beta_mh(2)*Y(39)*Y(4)+r_mh*beta_mh(2)*Y(55)*Y(4)-sigma*Y(95)+gamma_z*Y(83)
+
+  dYdt(96) = -mu*Y(96)+rho_DD*r_mh*beta_mh(3)*Y(39)*Y(5)+r_mh*beta_mh(3)*Y(55)*Y(5)-sigma*Y(96)+gamma_z*Y(84)
+
+  dYdt(97) = -mu*Y(97)+rho_DD*r_mh*beta_mh(4)*Y(39)*Y(6)+r_mh*beta_mh(4)*Y(55)*Y(6)-sigma*Y(97)+gamma_z*Y(85)
+
+  dYdt(98) = -mu*Y(98)+rho_DD*r_mh*beta_mh(1)*Y(40)*Y(3)+r_mh*beta_mh(1)*Y(56)*Y(3)-sigma*Y(98)+gamma_z*Y(86)
+
+  dYdt(99) = -mu*Y(99)+rho_DD*r_mh*beta_mh(3)*Y(40)*Y(5)+r_mh*beta_mh(3)*Y(56)*Y(5)-sigma*Y(99)+gamma_z*Y(87)
+
+  dYdt(100) = -mu*Y(100)+rho_DD*r_mh*beta_mh(4)*Y(40)*Y(6)+r_mh*beta_mh(4)*Y(56)*Y(6)-sigma*Y(100)+gamma_z*Y(88)
+
+  dYdt(101) = -mu*Y(101)+rho_DD*r_mh*beta_mh(1)*Y(41)*Y(3)+r_mh*beta_mh(1)*Y(57)*Y(3)-sigma*Y(101)+gamma_z*Y(89)
+
+  dYdt(102) = -mu*Y(102)+rho_DD*r_mh*beta_mh(2)*Y(41)*Y(4)+r_mh*beta_mh(2)*Y(57)*Y(4)-sigma*Y(102)+gamma_z*Y(90)
+
+  dYdt(103) = -mu*Y(103)+rho_DD*r_mh*beta_mh(4)*Y(41)*Y(6)+r_mh*beta_mh(4)*Y(57)*Y(6)-sigma*Y(103)+gamma_z*Y(91)
+
+  dYdt(104) = -mu*Y(104)+rho_DD*r_mh*beta_mh(1)*Y(42)*Y(3)+r_mh*beta_mh(1)*Y(58)*Y(3)-sigma*Y(104)+gamma_z*Y(92)
+
+  dYdt(105) = -mu*Y(105)+rho_DD*r_mh*beta_mh(2)*Y(42)*Y(4)+r_mh*beta_mh(2)*Y(58)*Y(4)-sigma*Y(105)+gamma_z*Y(93)
+
+  dYdt(106) = -mu*Y(106)+rho_DD*r_mh*beta_mh(3)*Y(42)*Y(5)+r_mh*beta_mh(3)*Y(58)*Y(5)-sigma*Y(106)+gamma_z*Y(94)
+
+  dYdt(107) = -mu*Y(107)+sigma*Y(59)+sigma*Y(60)+sigma*Y(61)+sigma*Y(62)+sigma*Y(63)+sigma*Y(64)+sigma*Y(65)+sigma*Y(66)+sigma*Y(67)+sigma*Y(68)+sigma*Y(69)+sigma*Y(70)-& 
+       r_mh*beta_zika_mh_ode*Y(107)*Y(2)
+
+  dYdt(108) = -mu*Y(108)+sigma*Y(71)+sigma*Y(72)+sigma*Y(73)+sigma*Y(74)+sigma*Y(75)+sigma*Y(76)+sigma*Y(77)+sigma*Y(78)+sigma*Y(79)+sigma*Y(80)+sigma*Y(81)+sigma*Y(82)+& 
+       r_mh*beta_zika_mh_ode*Y(107)*Y(2)-sigma_z*Y(108)
+
+  dYdt(109) = -gamma_z*Y(109)-mu*Y(109)+sigma*Y(83)+sigma*Y(84)+sigma*Y(85)+sigma*Y(86)+sigma*Y(87)+sigma*Y(88)+sigma*Y(89)+sigma*Y(90)+sigma*Y(91)+sigma*Y(92)+sigma*& 
+       Y(93)+sigma*Y(94)+sigma_z*Y(108)
+
+  dYdt(110) = gamma_z*Y(109)-mu*Y(110)+sigma*Y(95)+sigma*Y(96)+sigma*Y(97)+sigma*Y(98)+sigma*Y(99)+sigma*Y(100)+sigma*Y(101)+sigma*Y(102)+sigma*Y(103)+sigma*Y(104)+& 
+       sigma*Y(105)+sigma*Y(106)
+
+  dYdt(111) = r_mh*beta_zika_mh_ode*Y(7)*Y(2)+r_mh*beta_zika_mh_ode*Y(11)*Y(2)+r_mh*beta_zika_mh_ode*Y(12)*Y(2)+r_mh*beta_zika_mh_ode*Y(13)*Y(2)+r_mh*beta_zika_mh_ode*Y(14)*Y(2)+r_mh*beta_zika_mh_ode*& 
+       Y(43)*Y(2)+r_mh*beta_zika_mh_ode*Y(44)*Y(2)+r_mh*beta_zika_mh_ode*Y(45)*Y(2)+r_mh*beta_zika_mh_ode*Y(46)*Y(2)+r_mh*beta_zika_mh_ode*Y(59)*Y(2)+r_mh*beta_zika_mh_ode*& 
+       Y(60)*Y(2)+r_mh*beta_zika_mh_ode*Y(61)*Y(2)+r_mh*beta_zika_mh_ode*Y(62)*Y(2)+r_mh*beta_zika_mh_ode*Y(63)*Y(2)+r_mh*beta_zika_mh_ode*Y(64)*Y(2)+rho_DZ*r_mh*beta_zika_mh_ode*& 
+       Y(28)*Y(2)+rho_DZ*r_mh*beta_zika_mh_ode*Y(29)*Y(2)+rho_DZ*r_mh*beta_zika_mh_ode*Y(30)*Y(2)+rho_DZ*r_mh*beta_zika_mh_ode*Y(27)*Y(2)+r_mh*beta_zika_mh_ode*Y(107)*& 
+       Y(2)+r_mh*beta_zika_mh_ode*Y(65)*Y(2)+r_mh*beta_zika_mh_ode*Y(66)*Y(2)+r_mh*beta_zika_mh_ode*Y(67)*Y(2)+r_mh*beta_zika_mh_ode*Y(68)*Y(2)+r_mh*beta_zika_mh_ode*Y(69)*Y(2)+& 
+       r_mh*beta_zika_mh_ode*Y(70)*Y(2)
+
+  dYdt(112) = r_mh*beta_mh(1)*Y(7)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(28)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(29)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(30)*Y(3)+r_mh*beta_mh(1)*Y(44)*& 
+       Y(3)+r_mh*beta_mh(1)*Y(45)*Y(3)+r_mh*beta_mh(1)*Y(46)*Y(3)
+
+  dYdt(113) = r_mh*beta_mh(2)*Y(7)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(27)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(29)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(30)*Y(4)+r_mh*beta_mh(2)*Y(43)*& 
+       Y(4)+r_mh*beta_mh(2)*Y(45)*Y(4)+r_mh*beta_mh(2)*Y(46)*Y(4)
+
+  dYdt(114) = r_mh*beta_mh(3)*Y(7)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(27)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(28)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(30)*Y(5)+r_mh*beta_mh(3)*Y(43)*& 
+       Y(5)+r_mh*beta_mh(3)*Y(44)*Y(5)+r_mh*beta_mh(3)*Y(46)*Y(5)
+
+  dYdt(115) = r_mh*beta_mh(4)*Y(7)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(27)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(28)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(29)*Y(6)+r_mh*beta_mh(4)*Y(43)*& 
+       Y(6)+r_mh*beta_mh(4)*Y(44)*Y(6)+r_mh*beta_mh(4)*Y(45)*Y(6)
+
+  dYdt(116) = r_mh*beta_mh(1)*Y(8)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(32)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(33)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(34)*Y(3)+r_mh*beta_mh(1)*Y(48)*& 
+       Y(3)+r_mh*beta_mh(1)*Y(49)*Y(3)+r_mh*beta_mh(1)*Y(50)*Y(3)
+
+  dYdt(117) = r_mh*beta_mh(2)*Y(8)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(31)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(33)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(34)*Y(4)+r_mh*beta_mh(2)*Y(47)*& 
+       Y(4)+r_mh*beta_mh(2)*Y(49)*Y(4)+r_mh*beta_mh(2)*Y(50)*Y(4)
+
+  dYdt(118) = r_mh*beta_mh(3)*Y(8)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(31)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(32)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(34)*Y(5)+r_mh*beta_mh(3)*Y(47)*& 
+       Y(5)+r_mh*beta_mh(3)*Y(48)*Y(5)+r_mh*beta_mh(3)*Y(50)*Y(5)
+
+  dYdt(119) = r_mh*beta_mh(4)*Y(8)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(31)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(32)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(33)*Y(6)+r_mh*beta_mh(4)*Y(47)*& 
+       Y(6)+r_mh*beta_mh(4)*Y(48)*Y(6)+r_mh*beta_mh(4)*Y(49)*Y(6)
+
+  dYdt(120) = rho_ZD*r_mh*beta_mh(1)*Y(9)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(36)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(37)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(38)*Y(3)+rho_ZD*r_mh*beta_mh(1)*& 
+       Y(52)*Y(3)+rho_ZD*r_mh*beta_mh(1)*Y(53)*Y(3)+rho_ZD*r_mh*beta_mh(1)*Y(54)*Y(3)
+
+  dYdt(121) = rho_ZD*r_mh*beta_mh(2)*Y(9)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(35)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(37)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(38)*Y(4)+rho_ZD*r_mh*beta_mh(2)*& 
+       Y(51)*Y(4)+rho_ZD*r_mh*beta_mh(2)*Y(53)*Y(4)+rho_ZD*r_mh*beta_mh(2)*Y(54)*Y(4)
+
+  dYdt(122) = rho_ZD*r_mh*beta_mh(3)*Y(9)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(35)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(36)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(38)*Y(5)+rho_ZD*r_mh*beta_mh(3)*& 
+       Y(51)*Y(5)+rho_ZD*r_mh*beta_mh(3)*Y(52)*Y(5)+rho_ZD*r_mh*beta_mh(3)*Y(54)*Y(5)
+
+  dYdt(123) = rho_ZD*r_mh*beta_mh(4)*Y(9)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(35)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(36)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(37)*Y(6)+rho_ZD*r_mh*beta_mh(4)*& 
+       Y(51)*Y(6)+rho_ZD*r_mh*beta_mh(4)*Y(52)*Y(6)+rho_ZD*r_mh*beta_mh(4)*Y(53)*Y(6)
+
+  dYdt(124) = r_mh*beta_mh(1)*Y(10)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(40)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(41)*Y(3)+rho_DD*r_mh*beta_mh(1)*Y(42)*Y(3)+r_mh*beta_mh(1)*Y(56)*& 
+       Y(3)+r_mh*beta_mh(1)*Y(57)*Y(3)+r_mh*beta_mh(1)*Y(58)*Y(3)
+
+  dYdt(125) = r_mh*beta_mh(2)*Y(10)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(39)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(41)*Y(4)+rho_DD*r_mh*beta_mh(2)*Y(42)*Y(4)+r_mh*beta_mh(2)*Y(55)*& 
+       Y(4)+r_mh*beta_mh(2)*Y(57)*Y(4)+r_mh*beta_mh(2)*Y(58)*Y(4)
+
+  dYdt(126) = r_mh*beta_mh(3)*Y(10)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(39)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(40)*Y(5)+rho_DD*r_mh*beta_mh(3)*Y(42)*Y(5)+r_mh*beta_mh(3)*Y(55)*& 
+       Y(5)+r_mh*beta_mh(3)*Y(56)*Y(5)+r_mh*beta_mh(3)*Y(58)*Y(5)
+
+  dYdt(127) = r_mh*beta_mh(4)*Y(10)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(39)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(40)*Y(6)+rho_DD*r_mh*beta_mh(4)*Y(41)*Y(6)+r_mh*beta_mh(4)*Y(55)*& 
+       Y(6)+r_mh*beta_mh(4)*Y(56)*Y(6)+r_mh*beta_mh(4)*Y(57)*Y(6)
+
+
+
+
+
