@@ -1,9 +1,10 @@
-## Load compartmental model simulations and calculate summary metrics 
+## Load compartmental model simulations 
 ## Note: parts of this code will not run since they require the full 
 ## set of simulations (which were too large to provide).
 
 require(dplyr)
 require(tidyr)
+require(ggplot2)
 library(gridExtra)
 
 #setwd("~/dengue-Zika-chik_Americas")
@@ -36,29 +37,29 @@ source("06-compartmentalModels/indeces.R")
 # intro.ZIKV.t = 100 
 # ########################################################
 
-########################################################
-## original simulations (presented in Figure 4)
-original.sims = T
-R0.scenario= "R0D_4p0_R0Z_2p0" 
-wkdir = FILL_containing_R0.scenario
-setwd(wkdir)
-dirs_to_load=list.dirs(path = ".", full.names = TRUE, recursive = TRUE)
-dirs_to_load=grep("T_zika_intro_0",dirs_to_load,value=T)
-
-# Set the ZIKV introduction time
-intro.ZIKV.t = 100 
-########################################################
+# ########################################################
+# ## original simulations (presented in Figure 4)
+# original.sims = T
+# R0.scenario= "R0D_4p0_R0Z_2p0"
+# wkdir = FILL_containing_R0.scenario
+# setwd(wkdir)
+# dirs_to_load=list.dirs(path = ".", full.names = TRUE, recursive = TRUE)
+# dirs_to_load=grep("T_zika_intro_0",dirs_to_load,value=T)
+# 
+# # Set the ZIKV introduction time
+# intro.ZIKV.t = 100
+# ########################################################
  
 # ########################################################
 # ## simuations with sequential introduction of DENV serotypes
 # original.sims = F
-# R0.scenario= "R0D_4p0_R0Z_2p0" 
+# R0.scenario= "R0D_4p0_R0Z_2p0"
 # wkdir= = FILL_containing_R0.scenario
 # setwd(wkdir)
 # dirs_to_load=list.dirs(path = ".", full.names = TRUE, recursive = TRUE)
 # dirs_to_load=grep("T_zika_intro_0",dirs_to_load,value=T)
 # 
-# intro.ZIKV.t = 40 
+# intro.ZIKV.t = 40
 # ########################################################
 
 
@@ -366,4 +367,77 @@ if(original.sims == T){
   save(trough.data.ZIKV40,peak.size.data.ZIKV40,peak.increase.data.ZIKV40,trough.cutoff.ZIKV40,baseline.peak.ZIKV40,prev.summary.vals.ZIKV40
        ,file = "06-compartmentalModels/sims_output/data_ZIKV40.Rdata")
 }
+
+## Analysis of DENV dynamics prior ot the introduction of ZIKV
+# Note that it does not matter which set of DENV-ZIKV interaction simulations is loaded 
+# (since there is no interaction prior to ZIKV introduction)
+temp.data=input[[9]] # no enhancement and no cross-protection scenario
+record.times=seq(0,100,by=0.01)
+
+# view the indeces for cumulative DENV incidence for each serotype
+# (defined in "indeces.R")
+inc_dengue
+
+# extract serotype specific DENV incidence time-series for each simulation in temp.data
+dengueInc.mat=c()
+for(j in 1:length(temp.data)){
+  temp.sim=temp.data[[j]]
+  temp.t=temp.sim[,1]
+  temp.dat=temp.sim[,2:dim(temp.sim)[2]]
+  
+ 
+  new.dengueInc=c()
+  for(i in 1:4){
+    # here diff is used to convert cumulative incidence to incidence and
+    # the rowSums are aggregating over ZIKV status 
+    seroInc=data.frame(sim=paste0("sim",j)
+                       , time=temp.t[-1]
+                       , serotype=paste0("DENV",i)
+                       , incidence = diff(rowSums(temp.dat[,inc_dengue[i,]])))
+    new.dengueInc=rbind(new.dengueInc,seroInc)
+  }
+  dengueInc.mat=rbind(dengueInc.mat,new.dengueInc)
+}
+
+simulations=unique(dengueInc.mat$sim)
+
+# add total DENV incidence for each time and simulation
+total.dat <- summarise(dat %>% group_by(sim,time),incidence=sum(incidence)) %>% mutate(serotype="total")
+dengueInc.mat <- union_all(dengueInc.mat,total.dat)
+
+
+## Supplementary Figure 12
+## note that the following will neet to be run twice - once saved as dat for the stable state simulations
+## and once saved as new.dat with dengueInc.mat %>% filter(time>=20 & time<40) for the recently
+## introduced DENV simulations
+dat <- dengueInc.mat %>% filter(time>=80 & time<100) %>%
+  filter(sim %in% simulations[1:12]) %>%
+  filter(serotype != "total")
+original.sims.plot=ggplot(dat,aes(x=time,y=incidence,color=serotype))+
+  geom_line(size=1.2,alpha=0.6)+
+  facet_wrap(vars(sim))+
+  theme_linedraw()+
+  theme(strip.text.x = element_blank()
+        ,panel.grid.minor = element_blank()
+        ,panel.grid.major = element_line(colour="#dddddd",size=0.5)
+        ,text = element_text(size = 14))+
+  labs(x="\nTime (years)",y="DENV incidence\n",colour="Serotype",tag="a")
+
+new.sims.plot=ggplot(new.dat,aes(x=time,y=incidence,color=serotype))+
+  geom_line(size=1.2,alpha=0.6)+
+  # scale_colour_manual(values=cbbPalette)+
+  facet_wrap(vars(sim))+
+  theme_linedraw()+
+  theme(strip.text.x = element_blank()
+        ,panel.grid.minor = element_blank()
+        ,panel.grid.major = element_line(colour="#dddddd",size=0.5)
+        ,text = element_text(size = 14))+
+  labs(x="\nTime since DENV introduction (years)",y="DENV incidence\n",colour="Serotype",tag="b")
+
+
+
+grid.arrange(original.sims.plot,new.sims.plot,nrow=2)
+
+# or could label x=axis time until ZIKV introduction years, going from 20 to 0
+# save as 9x9 
 
